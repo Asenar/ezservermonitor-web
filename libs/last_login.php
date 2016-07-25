@@ -1,11 +1,10 @@
 <?php
-require '../autoload.php';
-$Config = new Config();
-
+require __DIR__.'/../autoload.php';
+$config = Config::instance();
 
 $datas = array();
 
-if ($Config->get('last_login:enable'))
+if ($config->get('last_login:enable'))
 {
     // official : if (!(exec('/usr/bin/lastlog --time 365 | awk \'{ printf $1";"; for (i=4; i<NF; i++) printf $i" "; print $NF; }\'', $users)))
     // from 2866dfb :
@@ -20,7 +19,7 @@ if ($Config->get('last_login:enable'))
     }
     else
     {
-        $max = $Config->get('last_login:max');
+        $max = $config->get('last_login:max');
 
         for ($i = 1; $i < count($users) && $i <= $max; $i++)
         {
